@@ -1,0 +1,262 @@
+<title>BlackRock 과학기술 트러스트(BST) 분석 리포트 · 2026-07-06</title>
+<style>
+:root{
+  --bg:#0f1216; --panel:#171b22; --panel2:#1d232c; --bd:#2a323d; --tx:#e6ebf2; --mut:#95a1b2;
+  --up:#e0483b; --dn:#2f7fe0; --buy:#22c55e; --stop:#ef4444; --tgt:#f59e0b; --acc:#6ea8fe;
+}
+@media (prefers-color-scheme:light){
+  :root{--bg:#f4f6f9;--panel:#fff;--panel2:#f0f3f7;--bd:#dde3ea;--tx:#131720;--mut:#5a6673;--acc:#2563eb;}
+}
+:root[data-theme="dark"]{--bg:#0f1216;--panel:#171b22;--panel2:#1d232c;--bd:#2a323d;--tx:#e6ebf2;--mut:#95a1b2;--acc:#6ea8fe;}
+:root[data-theme="light"]{--bg:#f4f6f9;--panel:#fff;--panel2:#f0f3f7;--bd:#dde3ea;--tx:#131720;--mut:#5a6673;--acc:#2563eb;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Pretendard","Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:26px;margin:0 0 4px;letter-spacing:-.02em}
+.sub{color:var(--mut);font-size:14px;margin-bottom:22px}
+.sub b{color:var(--tx)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--bd);border-radius:14px;padding:18px 20px;margin-bottom:14px}
+.sect{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--mut);text-transform:uppercase;margin:26px 0 10px}
+.verdict{background:linear-gradient(135deg,var(--panel),var(--panel2));border:1px solid var(--bd);border-radius:18px;padding:22px 24px;margin-bottom:18px;position:relative;overflow:hidden}
+.vhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.badge{font-size:22px;font-weight:800;padding:8px 20px;border-radius:12px;letter-spacing:.02em}
+.b-buy{background:rgba(34,197,94,.16);color:#22c55e;border:1.5px solid #22c55e66}
+.vtitle{font-size:15px;color:var(--mut)}
+.vtitle b{color:var(--tx);font-size:17px}
+.conf{margin-left:auto;text-align:right}
+.conf .n{font-size:30px;font-weight:800;line-height:1}
+.conf .l{font-size:11px;color:var(--mut)}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.pill{background:var(--panel2);border:1px solid var(--bd);border-radius:10px;padding:9px 14px;font-size:13px;flex:1;min-width:120px}
+.pill .k{color:var(--mut);font-size:11px;display:block}
+.pill .v{font-weight:700;font-size:16px}
+.v-buy{color:var(--buy)}.v-stop{color:var(--stop)}.v-tgt{color:var(--tgt)}
+.rgrade{display:inline-block;margin-top:14px;font-size:12px;background:rgba(245,158,11,.14);color:#f5a623;border:1px solid #f5a62355;padding:4px 12px;border-radius:20px;font-weight:700}
+.chart{width:100%;height:auto;display:block}
+.grid{stroke:var(--bd);stroke-width:1}
+.ylab,.xlab{fill:var(--mut);font-size:10px;font-family:inherit}
+.xlab{text-anchor:middle}
+.buy{stroke:var(--buy);stroke-width:1.3;stroke-dasharray:6 3}
+.stop{stroke:var(--stop);stroke-width:1.3;stroke-dasharray:6 3}
+.tgt{stroke:var(--tgt);stroke-width:1.3;stroke-dasharray:6 3}
+.cur{stroke:var(--acc);stroke-width:1.4}
+.buy-tag{fill:var(--buy)}.stop-tag{fill:var(--stop)}.tgt-tag{fill:var(--tgt)}.cur-tag{fill:var(--acc)}
+.tagtxt{fill:#fff;font-size:10px;font-weight:700;text-anchor:middle;font-family:inherit}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--mut);margin-top:8px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:20px;height:3px;border-radius:2px;display:inline-block}
+.zrow{display:grid;grid-template-columns:82px 1fr;gap:10px 12px;align-items:center;margin:12px 0}
+.zlabel{font-size:13px;font-weight:700}
+.ztrack{position:relative;height:26px;background:var(--panel2);border:1px solid var(--bd);border-radius:8px}
+.zband{position:absolute;top:0;bottom:0;background:linear-gradient(90deg,rgba(34,197,94,.35),rgba(34,197,94,.6));border-radius:6px}
+.zcur{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--acc)}
+.zvals{position:absolute;inset:0;display:flex;justify-content:space-between;padding:0 7px;font-size:10px;color:var(--tx);align-items:center;pointer-events:none;font-weight:600}
+.znote{grid-column:2;font-size:11.5px;color:var(--mut);margin-top:-4px}
+.zaxis{display:flex;justify-content:space-between;font-size:10px;color:var(--mut);margin:6px 0 0 94px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--bd)}
+th{color:var(--mut);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.tag{font-size:11px;padding:2px 8px;border-radius:6px;font-weight:700}
+.t-bear{background:rgba(47,127,224,.16);color:#5b9bf0}
+.t-bull{background:rgba(224,72,59,.16);color:#ef6a5e}
+.t-neu{background:rgba(149,161,178,.16);color:var(--mut)}
+.bbwrap{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.bbwrap{grid-template-columns:1fr}}
+.bull{border-top:3px solid var(--up)}.bear{border-top:3px solid var(--dn)}
+.bbhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.bbhead h3{margin:0;font-size:16px}
+.bbscore{font-size:12px;color:var(--mut)}
+.bbwrap ul{margin:0;padding-left:18px;font-size:13px}
+.bbwrap li{margin-bottom:7px}
+.acard h3{margin:0 0 2px;font-size:15px}
+.acard p{margin:0;font-size:13px;color:var(--tx)}
+.acard .conf-s{font-size:11px;color:var(--mut);margin-top:8px}
+.bars{height:6px;background:var(--panel2);border-radius:4px;overflow:hidden;margin-top:4px}
+.bars>i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),#a5c6ff)}
+ul.src{font-size:12px;columns:2;gap:24px;padding-left:18px;margin:0}
+@media(max-width:640px){ul.src{columns:1}}
+ul.src a{color:var(--acc);text-decoration:none}
+ul.src a:hover{text-decoration:underline}
+.plan{list-style:none;padding:0;margin:0}
+.plan li{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--bd);font-size:13.5px;align-items:baseline}
+.plan .step{font-weight:800;color:var(--acc);min-width:60px}
+.plan b{font-variant-numeric:tabular-nums}
+.note{font-size:11px;color:var(--mut)}
+.disc{margin-top:30px;padding:14px 16px;background:var(--panel2);border:1px dashed var(--bd);border-radius:10px;font-size:12px;color:var(--mut)}
+.flow{display:flex;gap:6px;flex-wrap:wrap;font-size:11px;color:var(--mut);margin-bottom:20px;align-items:center}
+.flow span{background:var(--panel2);border:1px solid var(--bd);padding:3px 10px;border-radius:20px}
+</style>
+<div class="wrap">
+  <h1>BlackRock 과학기술 트러스트 <span style="color:var(--mut);font-size:18px">BST · NYSE</span></h1>
+  <div class="sub">TradingAgents 멀티에이전트 분석 · 기준일 <b>2026-07-06</b> · 종가 <b>$48.81</b> <span style="color:var(--up)">▲ YTD +25.9%</span> · NAV <b>$52.45</b> · 할인율 <b style="color:var(--buy)">−6.94%</b> · RSI ≈65 · 분배율 6.15%(월배당)</div>
+
+  <div class="flow">
+    <span>애널리스트 4</span>→<span>Bull vs Bear</span>→<span>트레이더</span>→<span>리스크 관리</span>→<span>최종안</span>
+  </div>
+
+  <!-- VERDICT CARD -->
+  <div class="verdict">
+    <div class="vhead">
+      <div class="badge b-buy">BUY · 분할</div>
+      <div class="vtitle"><b>NAV 할인 + 월배당 인컴 축적 · 정배열 눌림 분할매수</b><br>강세 추세 속 과열·커버드콜 상단제약을 분할·인컴으로 상쇄</div>
+      <div class="conf"><div class="n">7<span style="font-size:15px;color:var(--mut)">/10</span></div><div class="l">확신도</div></div>
+    </div>
+    <div class="pills">
+      <div class="pill"><span class="k">1차 매수 (40%)</span><span class="v v-buy">$47.00</span></div>
+      <div class="pill"><span class="k">2차 매수 (30%·50일선)</span><span class="v v-buy">$45.50</span></div>
+      <div class="pill"><span class="k">손절 (종가)</span><span class="v v-stop">$42.50</span></div>
+      <div class="pill"><span class="k">1차 목표 (NAV 수렴)</span><span class="v v-tgt">$52.50</span></div>
+      <div class="pill"><span class="k">2차 목표</span><span class="v v-tgt">$55.00</span></div>
+    </div>
+    <span class="rgrade">⚠ 리스크 등급: 중간(Medium) · 무차입·할인쿠션으로 단일주 대비↓ · 총비중 70% 이내 · R/R 최대 2.2:1</span>
+  </div>
+
+  <div class="sect">가격 차트 · 전략 레벨 (최근 90거래일 · 시장가 기준)</div>
+  <div class="card">
+    <svg viewBox="0 0 920 420" class="chart" preserveAspectRatio="xMidYMid meet" role="img" aria-label="BST 캔들 차트">
+<line x1="8" y1="392.0" x2="846" y2="392.0" class="grid"/><text x="852" y="396.0" class="ylab">$34</text><line x1="8" y1="316.8" x2="846" y2="316.8" class="grid"/><text x="852" y="320.8" class="ylab">$38</text><line x1="8" y1="241.6" x2="846" y2="241.6" class="grid"/><text x="852" y="245.6" class="ylab">$43</text><line x1="8" y1="166.4" x2="846" y2="166.4" class="grid"/><text x="852" y="170.4" class="ylab">$47</text><line x1="8" y1="91.2" x2="846" y2="91.2" class="grid"/><text x="852" y="95.2" class="ylab">$52</text><line x1="8" y1="16.0" x2="846" y2="16.0" class="grid"/><text x="852" y="20.0" class="ylab">$56</text>
+<line x1="12.7" y1="237.3" x2="12.7" y2="250.1" stroke="#e0483b" stroke-width="1"/><rect x="9.8" y="241.1" width="5.8" height="5.1" fill="#e0483b"/><line x1="22.0" y1="226.0" x2="22.0" y2="253.9" stroke="#e0483b" stroke-width="1"/><rect x="19.1" y="238.9" width="5.8" height="2.2" fill="#e0483b"/><line x1="31.3" y1="226.9" x2="31.3" y2="259.0" stroke="#2f7fe0" stroke-width="1"/><rect x="28.4" y="238.9" width="5.8" height="8.2" fill="#2f7fe0"/><line x1="40.6" y1="241.6" x2="40.6" y2="256.3" stroke="#2f7fe0" stroke-width="1"/><rect x="37.7" y="247.1" width="5.8" height="3.7" fill="#2f7fe0"/><line x1="49.9" y1="231.9" x2="49.9" y2="264.2" stroke="#e0483b" stroke-width="1"/><rect x="47.0" y="245.2" width="5.8" height="5.6" fill="#e0483b"/><line x1="59.3" y1="225.7" x2="59.3" y2="256.1" stroke="#e0483b" stroke-width="1"/><rect x="56.4" y="236.6" width="5.8" height="8.6" fill="#e0483b"/><line x1="68.6" y1="229.6" x2="68.6" y2="247.9" stroke="#2f7fe0" stroke-width="1"/><rect x="65.7" y="236.6" width="5.8" height="4.3" fill="#2f7fe0"/><line x1="77.9" y1="225.7" x2="77.9" y2="254.6" stroke="#e0483b" stroke-width="1"/><rect x="75.0" y="239.4" width="5.8" height="1.5" fill="#e0483b"/><line x1="87.2" y1="216.3" x2="87.2" y2="249.1" stroke="#e0483b" stroke-width="1"/><rect x="84.3" y="226.0" width="5.8" height="13.4" fill="#e0483b"/><line x1="96.5" y1="217.7" x2="96.5" y2="241.6" stroke="#2f7fe0" stroke-width="1"/><rect x="93.6" y="226.0" width="5.8" height="7.2" fill="#2f7fe0"/><line x1="105.8" y1="219.4" x2="105.8" y2="258.3" stroke="#2f7fe0" stroke-width="1"/><rect x="102.9" y="233.2" width="5.8" height="11.3" fill="#2f7fe0"/><line x1="115.1" y1="228.6" x2="115.1" y2="252.9" stroke="#e0483b" stroke-width="1"/><rect x="112.2" y="237.0" width="5.8" height="7.5" fill="#e0483b"/><line x1="124.4" y1="221.3" x2="124.4" y2="246.7" stroke="#e0483b" stroke-width="1"/><rect x="121.5" y="231.0" width="5.8" height="6.0" fill="#e0483b"/><line x1="133.7" y1="217.3" x2="133.7" y2="245.2" stroke="#2f7fe0" stroke-width="1"/><rect x="130.8" y="231.0" width="5.8" height="1.0" fill="#2f7fe0"/><line x1="143.0" y1="224.7" x2="143.0" y2="238.9" stroke="#2f7fe0" stroke-width="1"/><rect x="140.1" y="231.5" width="5.8" height="1.0" fill="#2f7fe0"/><line x1="152.4" y1="216.1" x2="152.4" y2="243.0" stroke="#e0483b" stroke-width="1"/><rect x="149.5" y="227.1" width="5.8" height="4.9" fill="#e0483b"/><line x1="161.7" y1="209.1" x2="161.7" y2="240.4" stroke="#e0483b" stroke-width="1"/><rect x="158.8" y="222.5" width="5.8" height="4.6" fill="#e0483b"/><line x1="171.0" y1="217.2" x2="171.0" y2="239.5" stroke="#2f7fe0" stroke-width="1"/><rect x="168.1" y="222.5" width="5.8" height="11.8" fill="#2f7fe0"/><line x1="180.3" y1="222.3" x2="180.3" y2="249.6" stroke="#2f7fe0" stroke-width="1"/><rect x="177.4" y="234.3" width="5.8" height="3.4" fill="#2f7fe0"/><line x1="189.6" y1="212.7" x2="189.6" y2="250.3" stroke="#e0483b" stroke-width="1"/><rect x="186.7" y="225.4" width="5.8" height="12.3" fill="#e0483b"/><line x1="198.9" y1="221.4" x2="198.9" y2="236.8" stroke="#2f7fe0" stroke-width="1"/><rect x="196.0" y="225.4" width="5.8" height="7.5" fill="#2f7fe0"/><line x1="208.2" y1="220.1" x2="208.2" y2="260.7" stroke="#2f7fe0" stroke-width="1"/><rect x="205.3" y="232.9" width="5.8" height="15.0" fill="#2f7fe0"/><line x1="217.5" y1="236.1" x2="217.5" y2="263.6" stroke="#2f7fe0" stroke-width="1"/><rect x="214.6" y="247.9" width="5.8" height="4.0" fill="#2f7fe0"/><line x1="226.8" y1="246.4" x2="226.8" y2="265.0" stroke="#2f7fe0" stroke-width="1"/><rect x="223.9" y="251.9" width="5.8" height="7.6" fill="#2f7fe0"/><line x1="236.1" y1="246.2" x2="236.1" y2="285.5" stroke="#2f7fe0" stroke-width="1"/><rect x="233.2" y="259.5" width="5.8" height="12.7" fill="#2f7fe0"/><line x1="245.5" y1="244.5" x2="245.5" y2="308.4" stroke="#2f7fe0" stroke-width="1"/><rect x="242.6" y="272.2" width="5.8" height="8.5" fill="#2f7fe0"/><line x1="254.8" y1="256.8" x2="254.8" y2="319.9" stroke="#2f7fe0" stroke-width="1"/><rect x="251.9" y="280.7" width="5.8" height="15.2" fill="#2f7fe0"/><line x1="264.1" y1="265.4" x2="264.1" y2="354.9" stroke="#2f7fe0" stroke-width="1"/><rect x="261.2" y="295.9" width="5.8" height="28.4" fill="#2f7fe0"/><line x1="273.4" y1="297.8" x2="273.4" y2="379.9" stroke="#2f7fe0" stroke-width="1"/><rect x="270.5" y="324.3" width="5.8" height="29.1" fill="#2f7fe0"/><line x1="282.7" y1="322.3" x2="282.7" y2="378.8" stroke="#e0483b" stroke-width="1"/><rect x="279.8" y="347.7" width="5.8" height="5.7" fill="#e0483b"/><line x1="292.0" y1="297.1" x2="292.0" y2="378.5" stroke="#e0483b" stroke-width="1"/><rect x="289.1" y="327.9" width="5.8" height="19.8" fill="#e0483b"/><line x1="301.3" y1="302.8" x2="301.3" y2="357.5" stroke="#2f7fe0" stroke-width="1"/><rect x="298.4" y="327.9" width="5.8" height="4.5" fill="#2f7fe0"/><line x1="310.6" y1="322.4" x2="310.6" y2="346.5" stroke="#2f7fe0" stroke-width="1"/><rect x="307.7" y="332.4" width="5.8" height="4.2" fill="#2f7fe0"/><line x1="319.9" y1="309.6" x2="319.9" y2="350.3" stroke="#e0483b" stroke-width="1"/><rect x="317.0" y="323.3" width="5.8" height="13.3" fill="#e0483b"/><line x1="329.2" y1="301.1" x2="329.2" y2="330.1" stroke="#e0483b" stroke-width="1"/><rect x="326.3" y="307.9" width="5.8" height="15.4" fill="#e0483b"/><line x1="338.6" y1="289.1" x2="338.6" y2="319.0" stroke="#e0483b" stroke-width="1"/><rect x="335.7" y="300.2" width="5.8" height="7.7" fill="#e0483b"/><line x1="347.9" y1="286.9" x2="347.9" y2="314.9" stroke="#2f7fe0" stroke-width="1"/><rect x="345.0" y="300.2" width="5.8" height="1.4" fill="#2f7fe0"/><line x1="357.2" y1="291.0" x2="357.2" y2="306.9" stroke="#e0483b" stroke-width="1"/><rect x="354.3" y="296.3" width="5.8" height="5.3" fill="#e0483b"/><line x1="366.5" y1="276.3" x2="366.5" y2="308.3" stroke="#e0483b" stroke-width="1"/><rect x="363.6" y="288.3" width="5.8" height="8.0" fill="#e0483b"/><line x1="375.8" y1="275.6" x2="375.8" y2="309.1" stroke="#2f7fe0" stroke-width="1"/><rect x="372.9" y="288.3" width="5.8" height="8.2" fill="#2f7fe0"/><line x1="385.1" y1="288.4" x2="385.1" y2="300.6" stroke="#e0483b" stroke-width="1"/><rect x="382.2" y="292.5" width="5.8" height="4.0" fill="#e0483b"/><line x1="394.4" y1="256.1" x2="394.4" y2="305.3" stroke="#e0483b" stroke-width="1"/><rect x="391.5" y="268.9" width="5.8" height="23.6" fill="#e0483b"/><line x1="403.7" y1="248.4" x2="403.7" y2="280.7" stroke="#e0483b" stroke-width="1"/><rect x="400.8" y="260.2" width="5.8" height="8.7" fill="#e0483b"/><line x1="413.0" y1="254.6" x2="413.0" y2="266.0" stroke="#2f7fe0" stroke-width="1"/><rect x="410.1" y="260.2" width="5.8" height="1.0" fill="#2f7fe0"/><line x1="422.3" y1="241.1" x2="422.3" y2="273.7" stroke="#e0483b" stroke-width="1"/><rect x="419.4" y="254.4" width="5.8" height="6.0" fill="#e0483b"/><line x1="431.7" y1="239.2" x2="431.7" y2="265.2" stroke="#e0483b" stroke-width="1"/><rect x="428.8" y="250.0" width="5.8" height="4.4" fill="#e0483b"/><line x1="441.0" y1="242.5" x2="441.0" y2="257.2" stroke="#e0483b" stroke-width="1"/><rect x="438.1" y="249.6" width="5.8" height="1.0" fill="#e0483b"/><line x1="450.3" y1="236.0" x2="450.3" y2="266.4" stroke="#2f7fe0" stroke-width="1"/><rect x="447.4" y="249.6" width="5.8" height="3.1" fill="#2f7fe0"/><line x1="459.6" y1="232.5" x2="459.6" y2="262.3" stroke="#e0483b" stroke-width="1"/><rect x="456.7" y="242.1" width="5.8" height="10.6" fill="#e0483b"/><line x1="468.9" y1="216.1" x2="468.9" y2="250.7" stroke="#e0483b" stroke-width="1"/><rect x="466.0" y="224.7" width="5.8" height="17.4" fill="#e0483b"/><line x1="478.2" y1="210.8" x2="478.2" y2="243.3" stroke="#2f7fe0" stroke-width="1"/><rect x="475.3" y="224.7" width="5.8" height="4.8" fill="#2f7fe0"/><line x1="487.5" y1="221.3" x2="487.5" y2="239.9" stroke="#2f7fe0" stroke-width="1"/><rect x="484.6" y="229.5" width="5.8" height="2.2" fill="#2f7fe0"/><line x1="496.8" y1="207.9" x2="496.8" y2="241.6" stroke="#e0483b" stroke-width="1"/><rect x="493.9" y="217.8" width="5.8" height="13.9" fill="#e0483b"/><line x1="506.1" y1="201.4" x2="506.1" y2="231.5" stroke="#e0483b" stroke-width="1"/><rect x="503.2" y="215.1" width="5.8" height="2.7" fill="#e0483b"/><line x1="515.4" y1="208.4" x2="515.4" y2="223.5" stroke="#2f7fe0" stroke-width="1"/><rect x="512.5" y="215.1" width="5.8" height="1.7" fill="#2f7fe0"/><line x1="524.8" y1="200.6" x2="524.8" y2="227.9" stroke="#e0483b" stroke-width="1"/><rect x="521.9" y="211.7" width="5.8" height="5.1" fill="#e0483b"/><line x1="534.1" y1="189.8" x2="534.1" y2="225.0" stroke="#e0483b" stroke-width="1"/><rect x="531.2" y="203.1" width="5.8" height="8.6" fill="#e0483b"/><line x1="543.4" y1="194.8" x2="543.4" y2="208.3" stroke="#e0483b" stroke-width="1"/><rect x="540.5" y="199.9" width="5.8" height="3.2" fill="#e0483b"/><line x1="552.7" y1="187.8" x2="552.7" y2="220.6" stroke="#2f7fe0" stroke-width="1"/><rect x="549.8" y="199.9" width="5.8" height="8.5" fill="#2f7fe0"/><line x1="562.0" y1="191.9" x2="562.0" y2="221.1" stroke="#e0483b" stroke-width="1"/><rect x="559.1" y="204.5" width="5.8" height="3.9" fill="#e0483b"/><line x1="571.3" y1="185.9" x2="571.3" y2="208.6" stroke="#e0483b" stroke-width="1"/><rect x="568.4" y="190.0" width="5.8" height="14.5" fill="#e0483b"/><line x1="580.6" y1="177.2" x2="580.6" y2="206.7" stroke="#2f7fe0" stroke-width="1"/><rect x="577.7" y="190.0" width="5.8" height="3.9" fill="#2f7fe0"/><line x1="589.9" y1="182.1" x2="589.9" y2="206.7" stroke="#2f7fe0" stroke-width="1"/><rect x="587.0" y="193.9" width="5.8" height="1.0" fill="#2f7fe0"/><line x1="599.2" y1="176.1" x2="599.2" y2="200.6" stroke="#e0483b" stroke-width="1"/><rect x="596.3" y="181.8" width="5.8" height="13.1" fill="#e0483b"/><line x1="608.5" y1="166.2" x2="608.5" y2="195.3" stroke="#e0483b" stroke-width="1"/><rect x="605.6" y="179.7" width="5.8" height="2.1" fill="#e0483b"/><line x1="617.9" y1="169.0" x2="617.9" y2="195.5" stroke="#2f7fe0" stroke-width="1"/><rect x="615.0" y="179.7" width="5.8" height="5.0" fill="#2f7fe0"/><line x1="627.2" y1="176.3" x2="627.2" y2="191.9" stroke="#e0483b" stroke-width="1"/><rect x="624.3" y="183.5" width="5.8" height="1.2" fill="#e0483b"/><line x1="636.5" y1="159.1" x2="636.5" y2="197.3" stroke="#e0483b" stroke-width="1"/><rect x="633.6" y="172.9" width="5.8" height="10.6" fill="#e0483b"/><line x1="645.8" y1="153.9" x2="645.8" y2="182.3" stroke="#e0483b" stroke-width="1"/><rect x="642.9" y="163.3" width="5.8" height="9.6" fill="#e0483b"/><line x1="655.1" y1="154.6" x2="655.1" y2="176.1" stroke="#2f7fe0" stroke-width="1"/><rect x="652.2" y="163.3" width="5.8" height="4.1" fill="#2f7fe0"/><line x1="664.4" y1="149.1" x2="664.4" y2="181.3" stroke="#e0483b" stroke-width="1"/><rect x="661.5" y="163.0" width="5.8" height="4.4" fill="#e0483b"/><line x1="673.7" y1="143.5" x2="673.7" y2="171.0" stroke="#e0483b" stroke-width="1"/><rect x="670.8" y="151.5" width="5.8" height="11.5" fill="#e0483b"/><line x1="683.0" y1="141.6" x2="683.0" y2="170.3" stroke="#2f7fe0" stroke-width="1"/><rect x="680.1" y="151.5" width="5.8" height="8.9" fill="#2f7fe0"/><line x1="692.3" y1="146.7" x2="692.3" y2="178.9" stroke="#2f7fe0" stroke-width="1"/><rect x="689.4" y="160.4" width="5.8" height="4.8" fill="#2f7fe0"/><line x1="701.6" y1="145.2" x2="701.6" y2="171.9" stroke="#e0483b" stroke-width="1"/><rect x="698.7" y="151.9" width="5.8" height="13.3" fill="#e0483b"/><line x1="711.0" y1="132.2" x2="711.0" y2="163.0" stroke="#e0483b" stroke-width="1"/><rect x="708.1" y="143.3" width="5.8" height="8.6" fill="#e0483b"/><line x1="720.3" y1="127.1" x2="720.3" y2="156.5" stroke="#e0483b" stroke-width="1"/><rect x="717.4" y="140.3" width="5.8" height="3.0" fill="#e0483b"/><line x1="729.6" y1="131.7" x2="729.6" y2="145.4" stroke="#e0483b" stroke-width="1"/><rect x="726.7" y="136.8" width="5.8" height="3.5" fill="#e0483b"/><line x1="738.9" y1="116.0" x2="738.9" y2="149.0" stroke="#e0483b" stroke-width="1"/><rect x="736.0" y="128.1" width="5.8" height="8.7" fill="#e0483b"/><line x1="748.2" y1="111.5" x2="748.2" y2="140.8" stroke="#e0483b" stroke-width="1"/><rect x="745.3" y="124.2" width="5.8" height="3.9" fill="#e0483b"/><line x1="757.5" y1="119.9" x2="757.5" y2="141.4" stroke="#2f7fe0" stroke-width="1"/><rect x="754.6" y="124.2" width="5.8" height="13.0" fill="#2f7fe0"/><line x1="766.8" y1="124.2" x2="766.8" y2="150.2" stroke="#e0483b" stroke-width="1"/><rect x="763.9" y="137.2" width="5.8" height="1.0" fill="#e0483b"/><line x1="776.1" y1="112.9" x2="776.1" y2="149.0" stroke="#e0483b" stroke-width="1"/><rect x="773.2" y="124.7" width="5.8" height="12.5" fill="#e0483b"/><line x1="785.4" y1="118.9" x2="785.4" y2="136.8" stroke="#2f7fe0" stroke-width="1"/><rect x="782.5" y="124.7" width="5.8" height="6.3" fill="#2f7fe0"/><line x1="794.7" y1="117.5" x2="794.7" y2="150.7" stroke="#2f7fe0" stroke-width="1"/><rect x="791.8" y="131.0" width="5.8" height="6.2" fill="#2f7fe0"/><line x1="804.1" y1="121.1" x2="804.1" y2="147.8" stroke="#e0483b" stroke-width="1"/><rect x="801.2" y="131.7" width="5.8" height="5.5" fill="#e0483b"/><line x1="813.4" y1="124.4" x2="813.4" y2="140.3" stroke="#2f7fe0" stroke-width="1"/><rect x="810.5" y="131.7" width="5.8" height="1.2" fill="#2f7fe0"/><line x1="822.7" y1="119.1" x2="822.7" y2="154.6" stroke="#2f7fe0" stroke-width="1"/><rect x="819.8" y="132.9" width="5.8" height="7.9" fill="#2f7fe0"/><line x1="832.0" y1="131.4" x2="832.0" y2="156.3" stroke="#2f7fe0" stroke-width="1"/><rect x="829.1" y="140.8" width="5.8" height="6.1" fill="#2f7fe0"/><line x1="841.3" y1="130.2" x2="841.3" y2="155.6" stroke="#e0483b" stroke-width="1"/><rect x="838.4" y="138.9" width="5.8" height="8.0" fill="#e0483b"/>
+<line x1="8" y1="33.1" x2="846" y2="33.1" class="tgt"/><rect x="846" y="24.1" width="74" height="18" class="tgt-tag"/><text x="883" y="37.1" class="tagtxt">목표2 $55</text><line x1="8" y1="75.8" x2="846" y2="75.8" class="tgt"/><rect x="846" y="66.8" width="74" height="18" class="tgt-tag"/><text x="883" y="79.8" class="tagtxt">목표1 $52.5</text><line x1="8" y1="169.8" x2="846" y2="169.8" class="buy"/><rect x="846" y="160.8" width="74" height="18" class="buy-tag"/><text x="883" y="173.8" class="tagtxt">매수1 $47</text><line x1="8" y1="195.5" x2="846" y2="195.5" class="buy"/><rect x="846" y="186.5" width="74" height="18" class="buy-tag"/><text x="883" y="199.5" class="tagtxt">매수2 $45.5</text><line x1="8" y1="246.7" x2="846" y2="246.7" class="stop"/><rect x="846" y="237.7" width="74" height="18" class="stop-tag"/><text x="883" y="250.7" class="tagtxt">손절 $42.5</text>
+<line x1="8" y1="138.9" x2="846" y2="138.9" class="cur"/><rect x="846" y="129.9" width="74" height="18" class="cur-tag"/><text x="883" y="142.9" class="tagtxt">현재 $48.81</text>
+<text x="12.7" y="412" class="xlab">03/02</text><text x="152.4" y="412" class="xlab">03/23</text><text x="292.0" y="412" class="xlab">04/13</text><text x="431.7" y="412" class="xlab">05/04</text><text x="571.3" y="412" class="xlab">05/26</text><text x="711.0" y="412" class="xlab">06/16</text><text x="841.3" y="412" class="xlab" text-anchor="end">07/06</text>
+</svg>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--buy)"></i>매수가</span>
+      <span><i class="dot" style="background:var(--stop)"></i>손절</span>
+      <span><i class="dot" style="background:var(--tgt)"></i>목표가</span>
+      <span><i class="dot" style="background:var(--acc)"></i>현재가</span>
+      <span><i class="dot" style="background:var(--up)"></i>양봉 / <i class="dot" style="background:var(--dn)"></i>음봉</span>
+    </div>
+    <div style="margin-top:14px"><svg viewBox="0 0 920 90" class="chart" preserveAspectRatio="xMidYMid meet" role="img" aria-label="거래량"><rect x="9.8" y="69.1" width="5.8" height="20.9" fill="#e0483b" opacity="0.6"/><rect x="19.1" y="59.8" width="5.8" height="30.2" fill="#e0483b" opacity="0.6"/><rect x="28.4" y="64.1" width="5.8" height="25.9" fill="#2f7fe0" opacity="0.6"/><rect x="37.7" y="62.5" width="5.8" height="27.5" fill="#2f7fe0" opacity="0.6"/><rect x="47.0" y="60.6" width="5.8" height="29.4" fill="#e0483b" opacity="0.6"/><rect x="56.4" y="67.0" width="5.8" height="23.0" fill="#e0483b" opacity="0.6"/><rect x="65.7" y="59.5" width="5.8" height="30.5" fill="#2f7fe0" opacity="0.6"/><rect x="75.0" y="66.0" width="5.8" height="24.0" fill="#e0483b" opacity="0.6"/><rect x="84.3" y="61.1" width="5.8" height="28.9" fill="#e0483b" opacity="0.6"/><rect x="93.6" y="61.7" width="5.8" height="28.3" fill="#2f7fe0" opacity="0.6"/><rect x="102.9" y="65.0" width="5.8" height="25.0" fill="#2f7fe0" opacity="0.6"/><rect x="112.2" y="59.6" width="5.8" height="30.4" fill="#e0483b" opacity="0.6"/><rect x="121.5" y="68.1" width="5.8" height="21.9" fill="#e0483b" opacity="0.6"/><rect x="130.8" y="60.1" width="5.8" height="29.9" fill="#2f7fe0" opacity="0.6"/><rect x="140.1" y="63.3" width="5.8" height="26.7" fill="#2f7fe0" opacity="0.6"/><rect x="149.5" y="63.3" width="5.8" height="26.7" fill="#e0483b" opacity="0.6"/><rect x="158.8" y="60.1" width="5.8" height="29.9" fill="#e0483b" opacity="0.6"/><rect x="168.1" y="68.1" width="5.8" height="21.9" fill="#2f7fe0" opacity="0.6"/><rect x="177.4" y="59.6" width="5.8" height="30.4" fill="#2f7fe0" opacity="0.6"/><rect x="186.7" y="65.1" width="5.8" height="24.9" fill="#e0483b" opacity="0.6"/><rect x="196.0" y="61.7" width="5.8" height="28.3" fill="#2f7fe0" opacity="0.6"/><rect x="205.3" y="61.1" width="5.8" height="28.9" fill="#2f7fe0" opacity="0.6"/><rect x="214.6" y="66.0" width="5.8" height="24.0" fill="#2f7fe0" opacity="0.6"/><rect x="223.9" y="59.5" width="5.8" height="30.5" fill="#2f7fe0" opacity="0.6"/><rect x="233.2" y="25.2" width="5.8" height="64.8" fill="#2f7fe0" opacity="0.6"/><rect x="242.6" y="18.8" width="5.8" height="71.2" fill="#2f7fe0" opacity="0.6"/><rect x="251.9" y="20.7" width="5.8" height="69.3" fill="#2f7fe0" opacity="0.6"/><rect x="261.2" y="22.3" width="5.8" height="67.7" fill="#2f7fe0" opacity="0.6"/><rect x="270.5" y="18.0" width="5.8" height="72.0" fill="#2f7fe0" opacity="0.6"/><rect x="279.8" y="27.3" width="5.8" height="62.7" fill="#e0483b" opacity="0.6"/><rect x="289.1" y="18.0" width="5.8" height="72.0" fill="#e0483b" opacity="0.6"/><rect x="298.4" y="22.3" width="5.8" height="67.7" fill="#2f7fe0" opacity="0.6"/><rect x="307.7" y="20.7" width="5.8" height="69.3" fill="#2f7fe0" opacity="0.6"/><rect x="317.0" y="60.6" width="5.8" height="29.4" fill="#e0483b" opacity="0.6"/><rect x="326.3" y="67.0" width="5.8" height="23.0" fill="#e0483b" opacity="0.6"/><rect x="335.7" y="59.5" width="5.8" height="30.5" fill="#e0483b" opacity="0.6"/><rect x="345.0" y="66.0" width="5.8" height="24.0" fill="#2f7fe0" opacity="0.6"/><rect x="354.3" y="61.1" width="5.8" height="28.9" fill="#e0483b" opacity="0.6"/><rect x="363.6" y="61.8" width="5.8" height="28.2" fill="#e0483b" opacity="0.6"/><rect x="372.9" y="65.0" width="5.8" height="25.0" fill="#2f7fe0" opacity="0.6"/><rect x="382.2" y="59.6" width="5.8" height="30.4" fill="#e0483b" opacity="0.6"/><rect x="391.5" y="68.1" width="5.8" height="21.9" fill="#e0483b" opacity="0.6"/><rect x="400.8" y="60.1" width="5.8" height="29.9" fill="#e0483b" opacity="0.6"/><rect x="410.1" y="63.3" width="5.8" height="26.7" fill="#2f7fe0" opacity="0.6"/><rect x="419.4" y="63.3" width="5.8" height="26.7" fill="#e0483b" opacity="0.6"/><rect x="428.8" y="60.1" width="5.8" height="29.9" fill="#e0483b" opacity="0.6"/><rect x="438.1" y="68.0" width="5.8" height="22.0" fill="#e0483b" opacity="0.6"/><rect x="447.4" y="59.6" width="5.8" height="30.4" fill="#2f7fe0" opacity="0.6"/><rect x="456.7" y="65.1" width="5.8" height="24.9" fill="#e0483b" opacity="0.6"/><rect x="466.0" y="61.7" width="5.8" height="28.3" fill="#e0483b" opacity="0.6"/><rect x="475.3" y="61.1" width="5.8" height="28.9" fill="#2f7fe0" opacity="0.6"/><rect x="484.6" y="66.0" width="5.8" height="24.0" fill="#2f7fe0" opacity="0.6"/><rect x="493.9" y="59.5" width="5.8" height="30.5" fill="#e0483b" opacity="0.6"/><rect x="503.2" y="67.0" width="5.8" height="23.0" fill="#e0483b" opacity="0.6"/><rect x="512.5" y="60.6" width="5.8" height="29.4" fill="#2f7fe0" opacity="0.6"/><rect x="521.9" y="62.5" width="5.8" height="27.5" fill="#e0483b" opacity="0.6"/><rect x="531.2" y="64.1" width="5.8" height="25.9" fill="#e0483b" opacity="0.6"/><rect x="540.5" y="59.8" width="5.8" height="30.2" fill="#e0483b" opacity="0.6"/><rect x="549.8" y="69.1" width="5.8" height="20.9" fill="#2f7fe0" opacity="0.6"/><rect x="559.1" y="59.8" width="5.8" height="30.2" fill="#e0483b" opacity="0.6"/><rect x="568.4" y="64.1" width="5.8" height="25.9" fill="#e0483b" opacity="0.6"/><rect x="577.7" y="62.5" width="5.8" height="27.5" fill="#2f7fe0" opacity="0.6"/><rect x="587.0" y="60.6" width="5.8" height="29.4" fill="#2f7fe0" opacity="0.6"/><rect x="596.3" y="67.0" width="5.8" height="23.0" fill="#e0483b" opacity="0.6"/><rect x="605.6" y="59.5" width="5.8" height="30.5" fill="#e0483b" opacity="0.6"/><rect x="615.0" y="66.0" width="5.8" height="24.0" fill="#2f7fe0" opacity="0.6"/><rect x="624.3" y="41.8" width="5.8" height="48.2" fill="#e0483b" opacity="0.6"/><rect x="633.6" y="42.5" width="5.8" height="47.5" fill="#e0483b" opacity="0.6"/><rect x="642.9" y="45.7" width="5.8" height="44.3" fill="#e0483b" opacity="0.6"/><rect x="652.2" y="40.3" width="5.8" height="49.7" fill="#2f7fe0" opacity="0.6"/><rect x="661.5" y="48.8" width="5.8" height="41.2" fill="#e0483b" opacity="0.6"/><rect x="670.8" y="40.8" width="5.8" height="49.2" fill="#e0483b" opacity="0.6"/><rect x="680.1" y="44.0" width="5.8" height="46.0" fill="#2f7fe0" opacity="0.6"/><rect x="689.4" y="44.0" width="5.8" height="46.0" fill="#2f7fe0" opacity="0.6"/><rect x="698.7" y="40.9" width="5.8" height="49.1" fill="#e0483b" opacity="0.6"/><rect x="708.1" y="48.7" width="5.8" height="41.3" fill="#e0483b" opacity="0.6"/><rect x="717.4" y="40.3" width="5.8" height="49.7" fill="#e0483b" opacity="0.6"/><rect x="726.7" y="45.8" width="5.8" height="44.2" fill="#e0483b" opacity="0.6"/><rect x="736.0" y="42.4" width="5.8" height="47.6" fill="#e0483b" opacity="0.6"/><rect x="745.3" y="41.8" width="5.8" height="48.2" fill="#e0483b" opacity="0.6"/><rect x="754.6" y="46.7" width="5.8" height="43.3" fill="#2f7fe0" opacity="0.6"/><rect x="763.9" y="40.2" width="5.8" height="49.8" fill="#e0483b" opacity="0.6"/><rect x="773.2" y="47.8" width="5.8" height="42.2" fill="#e0483b" opacity="0.6"/><rect x="782.5" y="60.6" width="5.8" height="29.4" fill="#2f7fe0" opacity="0.6"/><rect x="791.8" y="62.5" width="5.8" height="27.5" fill="#2f7fe0" opacity="0.6"/><rect x="801.2" y="64.1" width="5.8" height="25.9" fill="#e0483b" opacity="0.6"/><rect x="810.5" y="59.8" width="5.8" height="30.2" fill="#2f7fe0" opacity="0.6"/><rect x="819.8" y="69.1" width="5.8" height="20.9" fill="#2f7fe0" opacity="0.6"/><rect x="829.1" y="59.8" width="5.8" height="30.2" fill="#2f7fe0" opacity="0.6"/><rect x="838.4" y="64.1" width="5.8" height="25.9" fill="#e0483b" opacity="0.6"/><line x1="8" y1="50.6" x2="846" y2="50.6" class="grid" stroke-dasharray="4 3"/><text x="852" y="54.6" class="ylab">20일평균</text></svg></div>
+    <div class="note">4월 관세 쇼크 저점(시장가 ~$36) 이후 V자 회복 → 5~6월 랠리로 52주 고점권($50 부근) 도달, 7월 초 소폭 눌림. 전 이동평균선(5·20·50·200일) 상단 정배열. <b>캔들·거래량은 공개 시세 앵커(현재가 $48.81·52주 NAV 레인지 $38.07~$54.53·이동평균)를 기반으로 재구성한 근사치</b>이며, 전략 레벨(현재가·매수·손절·목표)은 실데이터입니다.</div>
+  </div>
+
+  <div class="sect">관점별 적정 매수권 비교</div>
+  <div class="card">
+    <div class="zrow">
+      <div class="zlabel">기술적</div>
+      <div class="ztrack">
+        <div class="zband" style="left:21.4%;width:17.9%"></div>
+        <div class="zcur" style="left:48.6%"></div>
+        <div class="zvals"><span>$45.0</span><span>$47.5</span></div>
+      </div>
+      <div class="znote">50일선·정배열 눌림 매수권 (현재가는 그 위)</div>
+    </div><div class="zrow">
+      <div class="zlabel">NAV 할인</div>
+      <div class="ztrack">
+        <div class="zband" style="left:35.7%;width:14.3%"></div>
+        <div class="zcur" style="left:48.6%"></div>
+        <div class="zvals"><span>$47.0</span><span>$49.0</span></div>
+      </div>
+      <div class="znote">할인 −7~−10% 매력권 · NAV $52.45 기준</div>
+    </div><div class="zrow">
+      <div class="zlabel">인컴(분배)</div>
+      <div class="ztrack">
+        <div class="zband" style="left:0%;width:48.6%"></div>
+        <div class="zcur" style="left:48.6%"></div>
+        <div class="zvals"><span>$42.0</span><span>$48.8</span></div>
+      </div>
+      <div class="znote">현재가 이하 전 구간 월배당 인컴 유효(분배율 6.15%)</div>
+    </div><div class="zrow">
+      <div class="zlabel">적정가(par)</div>
+      <div class="ztrack">
+        <div class="zband" style="left:67.9%;width:14.3%"></div>
+        <div class="zcur" style="left:48.6%"></div>
+        <div class="zvals"><span>$51.5</span><span>$53.5</span></div>
+      </div>
+      <div class="znote">할인 해소 시 적정가 = NAV par $52.45 (=목표1)</div>
+    </div>
+    <div class="zaxis"><span>$42</span><span>$45.5</span><span>$49</span><span>$52.5</span><span>$56</span></div>
+    <div class="note" style="margin-top:10px">파란 세로선 = 현재가 $48.81. 현재가는 기술적 눌림권($45~47.5) 위·NAV 할인 매력권 상단 → 즉시 전량보다 눌림 분할이 합리적. 다만 할인·인컴 쿠션으로 현재가 진입도 인컴 관점 유효.</div>
+  </div>
+
+  <div class="sect">애널리스트 4인 판정</div>
+  <div class="grid2">
+    <div class="card acard">
+      <h3>📊 기술적 <span class="tag t-bull">강세</span></h3>
+      <p>종가 $48.81이 5·20·50·200일 이평선 <b>전부 상단(정배열)</b>. 50일선 ≈$45.5·200일선 ≈$41 위. 4월 저점 대비 +35%, 200일선 이격 +19%로 추세 강력하나 <b>52주 고점권·확장 국면</b>. RSI 64~67로 중립~과열 접근(과매수 70 미만). R/R 2.2.</p>
+      <div class="conf-s">확신 66/100<div class="bars"><i style="width:66%"></i></div></div>
+    </div>
+    <div class="card acard">
+      <h3>🌐 거시 <span class="tag t-bull">우호</span></h3>
+      <p>AI·반도체 슈퍼사이클과 빅테크 실적 강세가 포트폴리오(MS·엔비디아·브로드컴·애플·메타) 직접 수혜. 금리 인하 기대·달러 흐름 우호. 리스크: <b>AI capex 피크아웃</b> 논쟁, 빅테크 밸류 부담, 관세·규제 변수.</p>
+      <div class="conf-s">확신 64/100<div class="bars"><i style="width:64%"></i></div></div>
+    </div>
+    <div class="card acard">
+      <h3>💰 펀더멘털·CEF구조 <span class="tag t-bull">매력(할인+인컴)</span></h3>
+      <p><b>−6.94% NAV 할인</b> = 자산 $1를 약 93센트에 매입(안전마진). 순자산 $13.7억·<b>구조적 레버리지 0%</b>(보수적). 월배당 분배율 6.15%. 단, 분배 일부 ROC(원금환급) 가능성·보수 1.35%·커버드콜이 강세장 상단 이익 제한.</p>
+      <div class="conf-s">확신 68/100<div class="bars"><i style="width:68%"></i></div></div>
+    </div>
+    <div class="card acard">
+      <h3>🧭 심리 <span class="tag t-bull">탐욕(과열 경계)</span></h3>
+      <p>기술주 모멘텀·FOMO 강함, 각종 집계는 "Strong Buy" 신호. RSI 65로 과열 접근·52주 신고가 부근 → <b>신규 진입 R/R 열위</b>. 역발상 관점에선 눌림 대기가 유리하나, 인컴 목적 축적은 상시 유효.</p>
+      <div class="conf-s">확신 60/100<div class="bars"><i style="width:60%"></i></div></div>
+    </div>
+  </div>
+
+  <div class="sect">Researcher 토론 — Bull vs Bear</div>
+  <div class="bbwrap">
+    <div class="card bull">
+      <div class="bbhead"><h3 style="color:var(--up)">🐂 강세론</h3><span class="bbscore">확신 68/100</span></div>
+      <ul>
+        <li><b>−6.94% 할인 안전마진</b> — 할인 해소 시 NAV 상승과 별개로 추가 수익(이중 엔진).</li>
+        <li><b>월배당 6.15% 인컴</b> — 조정장에도 현금흐름이 총수익을 방어.</li>
+        <li><b>빅테크 슈퍼사이클 직접 노출</b> — MS·엔비디아·브로드컴·애플이 실적으로 견인.</li>
+        <li><b>구조적 레버리지 0%·무차입</b> — 급락장 강제 디레버리징 리스크 없음.</li>
+        <li><b>전 이평선 정배열</b> — 추세 추종상 상방 우위 유지.</li>
+      </ul>
+    </div>
+    <div class="card bear">
+      <div class="bbhead"><h3 style="color:var(--dn)">🐻 약세론</h3><span class="bbscore">상방 제약·과열</span></div>
+      <ul>
+        <li><b>커버드콜 상단 캡</b> — 기술주 급등장에서 콜 매도가 초과수익을 잘라냄.</li>
+        <li><b>RSI 65·200일선 +19% 이격</b> — 과열·확장, 신규 진입 R/R 열위.</li>
+        <li><b>분배 ROC 가능성</b> — 분배가 자본이득 부족 시 원금 잠식·NAV 훼손 위험.</li>
+        <li><b>상위10 종목 49% 집중</b> — AI 피크아웃·관세 시 동반 급락(분산 착시).</li>
+        <li><b>보수 1.35%</b> — 지수 ETF 대비 장기 복리 손실.</li>
+      </ul>
+      <div class="note" style="margin-top:6px">하방: 50일선 $45.5 → 손절 $42.5(200일선권) → 4월형 쇼크 재현 시 $36대.</div>
+    </div>
+  </div>
+
+  <div class="sect">트레이더 실행 계획 (리스크 관리 수정 반영 · 최종)</div>
+  <div class="card">
+    <ul class="plan">
+      <li><span class="step">1차</span><div><b>$47.00 · 비중 40%</b> — 소폭 눌림 + 할인 −9%권 확대 시. 인컴 목적이면 현재가 소량 선진입 허용.</div></li>
+      <li><span class="step">2차</span><div><b>$45.50 · 비중 30%</b> — <span class="note">50일선 지지 확인 매수. 추세 훼손(이평 이탈) 시 발동 보류.</span></div></li>
+      <li><span class="step">예비</span><div><b>30%</b> — 할인 −10% 이상 확대 또는 조정 후 저점 확인 시 배분.</div></li>
+      <li><span class="step">손절</span><div><b>$42.50 종가 기준</b> (200일선권 이탈) + 분배 삭감·대규모 ROC 공시 시 재평가.</div></li>
+      <li><span class="step">목표</span><div><b>1차 $52.50 (+7.6%·NAV par 수렴) · 2차 $55.00 (+12.7%)</b> — R/R 1.6:1 / 2.2:1. 목표까지 월배당 별도 누적.</div></li>
+    </ul>
+    <div class="note" style="margin-top:12px"><b>리스크 관리 판정: 승인(비중 상향 제한).</b> 단일주 대비 무차입·분산·NAV 할인 쿠션으로 리스크 <b>중간(Medium)</b>. 다만 과열·커버드콜 상단제약 감안해 즉시 전량 진입은 지양, 눌림 분할 + 인컴 축적 전략. 총비중 70% 이내 권고.</div>
+  </div>
+
+  <div class="sect">트리거 조건</div>
+  <div class="grid2">
+    <div class="card"><b style="color:var(--buy)">▲ 매수 실행</b><p style="font-size:13px;margin:6px 0 0">① $47.00/$45.50 지정가 체결 ② NAV 할인 −9% 이상 확대 시 매력↑ ③ 배당락 전후 인컴 목적 분할.</p></div>
+    <div class="card"><b style="color:var(--stop)">▼ 청산·폐기</b><p style="font-size:13px;margin:6px 0 0">① $42.50 종가 이탈 손절(200일선권) ② 할인 소멸·프리미엄 전환 시 목표 익절 ③ 분배 대폭 삭감·과도한 ROC 확인 ④ AI capex 피크아웃 현실화 시 비중 축소.</p></div>
+  </div>
+
+  <div class="sect">핵심 지표 요약</div>
+  <div class="card">
+    <table>
+      <tr><th>지표</th><th>값</th><th>해석</th></tr>
+      <tr><td>시장가 / NAV</td><td class="num">$48.81 / $52.45</td><td><span class="tag t-bull">할인 −6.94%</span></td></tr>
+      <tr><td>52주 NAV 레인지</td><td class="num">$38.07 – $54.53</td><td>고점권 근접</td></tr>
+      <tr><td>분배율(월배당)</td><td class="num">6.15%</td><td>인컴 매력</td></tr>
+      <tr><td>순자산 / 레버리지</td><td class="num">$13.7억 / 0%</td><td>무차입·보수적</td></tr>
+      <tr><td>보수율(총)</td><td class="num">1.35%</td><td><span class="tag t-bear">비용 부담</span></td></tr>
+      <tr><td>상위10 집중도</td><td class="num">49%</td><td>MS·브로드컴·애플(7.7%)·메타·엔비디아</td></tr>
+      <tr><td>RSI / 추세</td><td class="num">≈65 / 정배열</td><td><span class="tag t-neu">중립~과열</span></td></tr>
+    </table>
+    <div class="note" style="margin-top:8px">보유종목 비중은 2026-03-31 팩트시트·SEC 공시 기준(애플 7.7% 확인, 상위10=49.06%). 그 외 대형주 순위는 공시 확인, 세부 비중은 시점차로 근사.</div>
+  </div>
+
+  <div class="sect">근거 출처</div>
+  <div class="card"><ul class="src"><li><a href="https://www.blackrock.com/us/individual/products/270141/blackrock-science-and-technology-trust-fund" target="_blank" rel="noopener">BST 공식 펀드 페이지 (BlackRock)</a></li><li><a href="https://www.sec.gov/Archives/edgar/data/0001616678/000119312526248381/d81899d424b5.htm" target="_blank" rel="noopener">BST Form 424B5 FY2026 (SEC)</a></li><li><a href="https://www.sec.gov/Archives/edgar/data/0001616678/000141036826054494/NPORT_LCXI_40485067_0326.htm" target="_blank" rel="noopener">BST 보유내역 NPORT-P 2026-03-31 (SEC)</a></li><li><a href="https://www.blackrock.com/us/individual/literature/fact-sheet/science-and-technology-trust-usd-factsheet-us09258g1040-us-en-individual.pdf" target="_blank" rel="noopener">BST 팩트시트 2026-03-31 (BlackRock)</a></li><li><a href="https://www.dividend.com/funds/bst-blackrock-science-technology-trust/" target="_blank" rel="noopener">BST 분배금 이력 (Dividend.com)</a></li><li><a href="https://www.tipranks.com/mutual-funds/bst/technical-analysis" target="_blank" rel="noopener">BST 기술적 분석 (TipRanks)</a></li><li><a href="https://financhill.com/stock-forecast/BST-stock-prediction" target="_blank" rel="noopener">BST 이동평균·전망 (Financhill)</a></li><li><a href="https://www.marketbeat.com/stocks/NYSE/BST/" target="_blank" rel="noopener">BST 시세·요약 (MarketBeat)</a></li></ul></div>
+
+  <div class="disc">본 보고서는 TradingAgents 구조(arXiv 2412.20138)를 재현한 <b>AI 멀티에이전트 시뮬레이션</b>이며 투자 자문이 아닙니다. 가격·NAV·할인율·분배율·보유종목은 BlackRock 공시·SEC 파일링·공개 시세 집계 기반이며, 캔들/거래량 차트는 공개 앵커로 <b>재구성한 근사치</b>입니다(전략 레벨은 실수치). BST는 폐쇄형 펀드(CEF)로 순수 지수 ETF와 구조가 다릅니다(할인/프리미엄·분배 ROC·커버드콜·보수). 모든 투자 판단과 그 결과의 책임은 전적으로 투자자 본인에게 있습니다.</div>
+</div>
