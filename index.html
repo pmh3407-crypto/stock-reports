@@ -1,3 +1,87 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><title>주식 분석 보고서 배포</title>
-<style>body{background:#14171f;color:#e7e4da;font-family:Pretendard,'Malgun Gothic',sans-serif;max-width:760px;margin:60px auto;padding:0 20px;line-height:1.7}a{color:#4a9eff}</style>
-</head><body><h1>📈 주식 분석 보고서</h1><p>AI 증권사(TradingAgents) 대시보드에서 배포된 보고서가 이곳에 게시됩니다.</p></body></html>
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>주식 분석 보고서</title>
+<style>
+:root{--bg:#0f1216;--panel:#171b22;--panel2:#1d232c;--bd:#2a323d;--tx:#e6ebf2;--mut:#95a1b2;--acc:#6ea8fe;--up:#e0483b;--dn:#2f7fe0;}
+@media (prefers-color-scheme:light){:root{--bg:#f4f6f9;--panel:#fff;--panel2:#f0f3f7;--bd:#dde3ea;--tx:#131720;--mut:#5a6673;--acc:#2563eb;}}
+:root[data-theme="dark"]{--bg:#0f1216;--panel:#171b22;--panel2:#1d232c;--bd:#2a323d;--tx:#e6ebf2;--mut:#95a1b2;--acc:#6ea8fe;}
+:root[data-theme="light"]{--bg:#f4f6f9;--panel:#fff;--panel2:#f0f3f7;--bd:#dde3ea;--tx:#131720;--mut:#5a6673;--acc:#2563eb;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Pretendard","Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:48px 20px 80px}
+h1{font-size:28px;margin:0 0 4px;letter-spacing:-.02em}
+.sub{color:var(--mut);font-size:14px;margin-bottom:32px}
+.sect{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--mut);text-transform:uppercase;margin:30px 0 12px}
+.list{display:flex;flex-direction:column;gap:10px}
+a.item{display:flex;align-items:center;gap:14px;text-decoration:none;background:var(--panel);border:1px solid var(--bd);border-radius:12px;padding:15px 18px;color:var(--tx);transition:border-color .15s,transform .05s}
+a.item:hover{border-color:var(--acc);transform:translateY(-1px)}
+.ico{font-size:22px;flex-shrink:0}
+.meta{flex:1;min-width:0}
+.tt{font-weight:700;font-size:15px}
+.dd{font-size:12px;color:var(--mut);margin-top:1px}
+.arw{color:var(--mut);font-size:18px}
+.pill{font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;flex-shrink:0}
+.p-new{background:rgba(110,168,254,.16);color:var(--acc)}
+.p-study{background:rgba(34,197,94,.16);color:#3ddc84}
+.foot{margin-top:40px;font-size:12px;color:var(--mut);border-top:1px solid var(--bd);padding-top:16px}
+</style>
+</head><body>
+<div class="wrap">
+  <h1>📈 주식 분석 보고서</h1>
+  <div class="sub">AI 증권사(TradingAgents) 대시보드에서 배포된 보고서 모음 · 항목을 클릭하면 열립니다</div>
+
+  <div class="sect">최신 · 다중 애널리스트 분석 (2026-07-29)</div>
+  <div class="list">
+    <a class="item" href="삼성전자(005930)-분석-20260729.html">
+      <span class="ico">🔷</span>
+      <span class="meta"><span class="tt">삼성전자 <span style="color:var(--mut);font-weight:500">005930</span></span><span class="dd">현재가 ≈202,500원 · 종합 중립 · 4개 관점 분석</span></span>
+      <span class="pill p-new">NEW</span><span class="arw">›</span>
+    </a>
+    <a class="item" href="SK하이닉스(000660)-분석-20260729.html">
+      <span class="ico">🟥</span>
+      <span class="meta"><span class="tt">SK하이닉스 <span style="color:var(--mut);font-weight:500">000660</span></span><span class="dd">현재가 ≈1,401,000원 · 종합 중립 · 4개 관점 분석</span></span>
+      <span class="pill p-new">NEW</span><span class="arw">›</span>
+    </a>
+  </div>
+
+  <div class="sect">종목 리포트</div>
+  <div class="list">
+    <a class="item" href="반도체급락-하이닉스삼성-20260713.html">
+      <span class="ico">📉</span>
+      <span class="meta"><span class="tt">반도체 급락 · 하이닉스·삼성</span><span class="dd">2026-07-13</span></span>
+      <span class="arw">›</span>
+    </a>
+    <a class="item" href="삼성전자(005930)-20260707.html">
+      <span class="ico">🔷</span>
+      <span class="meta"><span class="tt">삼성전자 <span style="color:var(--mut);font-weight:500">005930</span></span><span class="dd">2026-07-07</span></span>
+      <span class="arw">›</span>
+    </a>
+    <a class="item" href="SK하이닉스(000660)-20260707.html">
+      <span class="ico">🟥</span>
+      <span class="meta"><span class="tt">SK하이닉스 <span style="color:var(--mut);font-weight:500">000660</span></span><span class="dd">2026-07-07</span></span>
+      <span class="arw">›</span>
+    </a>
+    <a class="item" href="TIGER리츠부동산인프라(329200)-20260707.html">
+      <span class="ico">🏢</span>
+      <span class="meta"><span class="tt">TIGER 리츠부동산인프라 <span style="color:var(--mut);font-weight:500">329200</span></span><span class="dd">2026-07-07</span></span>
+      <span class="arw">›</span>
+    </a>
+  </div>
+
+  <div class="sect">학습 세션</div>
+  <div class="list">
+    <a class="item" href="study/삼성전자(005930)-학습-20260707.html">
+      <span class="ico">📚</span>
+      <span class="meta"><span class="tt">삼성전자 학습 <span style="color:var(--mut);font-weight:500">005930</span></span><span class="dd">2026-07-07</span></span>
+      <span class="pill p-study">STUDY</span><span class="arw">›</span>
+    </a>
+    <a class="item" href="study/SK하이닉스(000660)-학습-20260707.html">
+      <span class="ico">📚</span>
+      <span class="meta"><span class="tt">SK하이닉스 학습 <span style="color:var(--mut);font-weight:500">000660</span></span><span class="dd">2026-07-07</span></span>
+      <span class="pill p-study">STUDY</span><span class="arw">›</span>
+    </a>
+  </div>
+
+  <div class="foot">⚠ 본 보고서는 참고용 AI 분석이며 매수·매도를 권유하지 않습니다. 수치는 지연·근사치일 수 있으니 실시간 공식 데이터로 교차 확인하세요.</div>
+</div>
+</body></html>
