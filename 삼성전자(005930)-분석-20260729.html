@@ -1,0 +1,191 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>삼성전자(005930) 분석 리포트 · 2026-07-29</title>
+<style>
+:root{--bg:#0f1216;--panel:#171b22;--panel2:#1d232c;--bd:#2a323d;--tx:#e6ebf2;--mut:#95a1b2;--up:#e0483b;--dn:#2f7fe0;--buy:#22c55e;--stop:#ef4444;--tgt:#f59e0b;--acc:#6ea8fe;}
+@media (prefers-color-scheme:light){:root{--bg:#f4f6f9;--panel:#fff;--panel2:#f0f3f7;--bd:#dde3ea;--tx:#131720;--mut:#5a6673;--acc:#2563eb;}}
+:root[data-theme="dark"]{--bg:#0f1216;--panel:#171b22;--panel2:#1d232c;--bd:#2a323d;--tx:#e6ebf2;--mut:#95a1b2;--acc:#6ea8fe;}
+:root[data-theme="light"]{--bg:#f4f6f9;--panel:#fff;--panel2:#f0f3f7;--bd:#dde3ea;--tx:#131720;--mut:#5a6673;--acc:#2563eb;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Pretendard","Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:26px;margin:0 0 4px;letter-spacing:-.02em}
+.sub{color:var(--mut);font-size:14px;margin-bottom:8px}.sub b{color:var(--tx)}
+.flow{display:flex;gap:6px;flex-wrap:wrap;font-size:11px;color:var(--mut);margin:14px 0 22px;align-items:center}
+.flow span{background:var(--panel2);border:1px solid var(--bd);padding:3px 10px;border-radius:20px}
+.sect{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--mut);text-transform:uppercase;margin:30px 0 10px}
+.card{background:var(--panel);border:1px solid var(--bd);border-radius:14px;padding:18px 20px;margin-bottom:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+/* verdict */
+.verdict{background:linear-gradient(135deg,var(--panel),var(--panel2));border:1px solid var(--bd);border-radius:18px;padding:22px 24px;margin-bottom:18px}
+.vhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.badge{font-size:22px;font-weight:800;padding:8px 20px;border-radius:12px}
+.b-hold{background:rgba(245,158,11,.16);color:#f5a623;border:1.5px solid #f5a62366}
+.vtitle{font-size:15px;color:var(--mut)}.vtitle b{color:var(--tx);font-size:17px}
+.conf{margin-left:auto;text-align:right}.conf .n{font-size:30px;font-weight:800;line-height:1}.conf .l{font-size:11px;color:var(--mut)}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.pill{background:var(--panel2);border:1px solid var(--bd);border-radius:10px;padding:9px 14px;font-size:13px;flex:1;min-width:120px}
+.pill .k{color:var(--mut);font-size:11px;display:block}.pill .v{font-weight:700;font-size:16px}
+.v-buy{color:var(--buy)}.v-stop{color:var(--stop)}.v-tgt{color:var(--tgt)}
+.rgrade{display:inline-block;margin-top:14px;font-size:12px;background:rgba(239,68,68,.14);color:#f87171;border:1px solid #ef444455;padding:4px 12px;border-radius:20px;font-weight:700}
+/* price header */
+.qprice{font-size:34px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.chg{font-size:14px;font-weight:700;margin-top:6px}.chg.down{color:var(--dn)}.chg.up{color:var(--up)}
+/* range */
+.zrow{display:grid;grid-template-columns:1fr;gap:6px;margin:6px 0}
+.ztrack{position:relative;height:30px;background:var(--panel2);border:1px solid var(--bd);border-radius:8px}
+.zband{position:absolute;top:0;bottom:0;left:0;right:0;background:linear-gradient(90deg,rgba(47,127,224,.15),rgba(224,72,59,.28));border-radius:6px}
+.zcur{position:absolute;top:-5px;bottom:-5px;width:3px;background:var(--tgt);border-radius:2px}
+.zvals{position:absolute;inset:0;display:flex;justify-content:space-between;padding:0 8px;font-size:10.5px;color:var(--tx);align-items:center;font-weight:600}
+/* metrics */
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--bd)}
+th{color:var(--mut);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+.tag{font-size:11px;padding:2px 8px;border-radius:6px;font-weight:700}
+.t-bear{background:rgba(47,127,224,.16);color:#5b9bf0}.t-bull{background:rgba(224,72,59,.16);color:#ef6a5e}.t-neu{background:rgba(149,161,178,.16);color:var(--mut)}
+/* bull bear */
+.bbwrap{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.bbwrap{grid-template-columns:1fr}}
+.bull{border-top:3px solid var(--up)}.bear{border-top:3px solid var(--dn)}
+.bbhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.bbhead h3{margin:0;font-size:16px}
+.bbwrap ul{margin:0;padding-left:18px;font-size:13px}.bbwrap li{margin-bottom:7px}
+/* analyst */
+.acard h3{margin:0 0 2px;font-size:15px}
+.acard .vs{font-size:12px;margin-bottom:8px;font-weight:700}
+.acard p{margin:0;font-size:13px;color:var(--tx)}
+.acard .cs{font-size:11px;color:var(--mut);margin-top:8px}
+.bars{height:6px;background:var(--panel2);border-radius:4px;overflow:hidden;margin-top:4px}
+.bars>i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),#a5c6ff)}
+.j-buy{color:var(--buy)}.j-sell{color:var(--stop)}.j-neu{color:var(--tgt)}
+.plan{list-style:none;padding:0;margin:0}
+.plan li{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--bd);font-size:13.5px;align-items:baseline}
+.plan .step{font-weight:800;color:var(--acc);min-width:78px}.plan b{font-variant-numeric:tabular-nums}
+ul.src{font-size:12px;columns:2;gap:24px;padding-left:18px;margin:0}
+@media(max-width:640px){ul.src{columns:1}}
+ul.src a{color:var(--acc);text-decoration:none}ul.src a:hover{text-decoration:underline}
+.disc{margin-top:30px;padding:14px 16px;background:var(--panel2);border:1px dashed var(--bd);border-radius:10px;font-size:12px;color:var(--mut)}
+p{font-size:14px}
+</style>
+</head><body>
+<div class="wrap">
+  <h1>삼성전자 <span style="color:var(--mut);font-size:18px">005930</span></h1>
+  <div class="sub">AI 증권사 다중 애널리스트 리포트 · 기준 <b>2026-07-29 (장중)</b> · KOSPI · KRW</div>
+  <div class="flow"><span>데이터 수집</span>›<span>펀더멘털</span>›<span>기술적</span>›<span>뉴스·심리</span>›<span>리스크</span>›<span>종합</span></div>
+
+  <!-- VERDICT -->
+  <div class="verdict">
+    <div class="vhead">
+      <span class="badge b-hold">중립 · HOLD</span>
+      <div class="vtitle">현재가 <b>≈ 202,500원</b> · <span class="chg down" style="display:inline">−7.95% (−17,500) ▼</span></div>
+      <div class="conf"><div class="n">58<span style="font-size:16px">%</span></div><div class="l">종합 신뢰도</div></div>
+    </div>
+    <div class="pills">
+      <div class="pill"><span class="k">제안 매수구간</span><span class="v v-buy">190,000 ~ 205,000</span></div>
+      <div class="pill"><span class="k">목표가 (1차/중기)</span><span class="v v-tgt">240,000 / 300,000</span></div>
+      <div class="pill"><span class="k">손절가 (종가)</span><span class="v v-stop">185,000</span></div>
+    </div>
+    <span class="rgrade">⚠ 리스크 등급: 매우 높음 · 이틀 연속 서킷브레이커 · 분할·현금비중 확보 필수</span>
+  </div>
+
+  <!-- 52W RANGE -->
+  <div class="sect">52주 밴드 내 현재 위치</div>
+  <div class="card">
+    <div class="zrow"><div class="ztrack"><div class="zband"></div>
+      <div class="zcur" style="left:44%"></div>
+      <div class="zvals"><span>최저 67,500</span><span>현재 ≈202,500</span><span>최고 374,500</span></div>
+    </div></div>
+    <p class="note" style="font-size:11.5px;color:var(--mut);margin:8px 0 0">고점(374,500) 대비 약 −46% 조정. 현재가는 7/29 장중 실시간 집계값(글로벌 데이터+국내 언론 수렴)이며 급락장 특성상 ±수천 원 변동 가능.</p>
+  </div>
+
+  <!-- FUNDAMENTALS -->
+  <div class="sect">핵심 지표 · 실적</div>
+  <div class="card">
+    <table>
+      <tr><th>지표</th><th style="text-align:right">값</th><th style="text-align:right">비고</th></tr>
+      <tr><td>현재가</td><td class="num">≈ 202,500원</td><td style="text-align:right"><span class="tag t-bear">−7.95%</span></td></tr>
+      <tr><td>52주 최고 / 최저</td><td class="num">374,500 / 67,500</td><td style="text-align:right"><span class="tag t-neu">밴드 중단</span></td></tr>
+      <tr><td>시가총액(추정)</td><td class="num">약 1,200조 원대</td><td style="text-align:right"><span class="tag t-neu">불확실</span></td></tr>
+      <tr><td>26' 2Q 매출</td><td class="num">약 171조 원</td><td style="text-align:right"><span class="tag t-bull">YoY +129%</span></td></tr>
+      <tr><td>26' 2Q 영업이익</td><td class="num">약 89.4조 원</td><td style="text-align:right"><span class="tag t-neu">공시 검증필요</span></td></tr>
+      <tr><td>메모리 / 비메모리</td><td class="num">흑자 / 파운드리 적자</td><td style="text-align:right"><span class="tag t-bear">비메모리 리스크</span></td></tr>
+      <tr><td>12M 목표가(컨센)</td><td class="num">약 398,000~493,000</td><td style="text-align:right"><span class="tag t-neu">하향 리스크</span></td></tr>
+    </table>
+    <p class="note" style="font-size:11.5px;color:var(--mut);margin-top:10px">⚠ 26' 2Q 영업이익 89.4조 원은 검색 집계값으로 삼성 통상 분기(6~10조) 대비 이례적. AI 슈퍼사이클 반영값 혹은 데이터 편차 가능성 — 확정 공시 원문 교차확인 권장. PER/PBR/배당은 소스 차단으로 미확정.</p>
+  </div>
+
+  <!-- BULL/BEAR -->
+  <div class="sect">강세 vs 약세 시나리오</div>
+  <div class="bbwrap">
+    <div class="card bull"><div class="bbhead"><h3>🐂 강세 논거</h3><span class="note" style="font-size:12px;color:var(--mut)">HBM 리더십</span></div>
+      <ul>
+        <li>HBM4 세계 최초 양산·HBM4E 샘플 공급 → AI 메모리 사이클 핵심 수혜, 매출 3배 성장 전망</li>
+        <li>메모리 사업 압도적 흑자로 실적 체력 견고</li>
+        <li>급락으로 밸류에이션 매력 확대, 목표가 대비 큰 괴리</li>
+        <li>엔비디아·애플 등 최상위 고객 확보</li>
+        <li>범용 DRAM 약세를 HBM 믹스 개선으로 상쇄하는 차별화</li>
+      </ul>
+    </div>
+    <div class="card bear"><div class="bbhead"><h3>🐻 약세 논거</h3><span class="note" style="font-size:12px;color:var(--mut)">피크아웃·중국 쇼크</span></div>
+      <ul>
+        <li>반도체 피크아웃 공포 미해소 — 심리가 펀더멘털을 압도</li>
+        <li>중국(CXMT·DUV 국산화) 추격으로 범용 메모리 가격·점유율 위협</li>
+        <li>외국인 대규모 순매도(코스피 −2조 원대), 서킷브레이커 반복</li>
+        <li>파운드리·시스템LSI 적자 지속(추정 −3.2조 원)</li>
+        <li>AI 설비투자 회의론 확산 시 HBM 성장 전망 하향 리스크</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ANALYST PANEL -->
+  <div class="sect">애널리스트 관점별 의견</div>
+  <div class="grid2">
+    <div class="card acard"><h3>📊 펀더멘털 분석가</h3><div class="vs j-buy">매수</div>
+      <p>HBM4 리더십과 메모리 초과이익으로 이익 체력은 역대급. 파운드리 적자·실적 수치 검증 필요성은 있으나 급락으로 밸류에이션은 매력 구간 진입.</p>
+      <div class="cs">신뢰도 60%</div><div class="bars"><i style="width:60%"></i></div>
+    </div>
+    <div class="card acard"><h3>📈 기술적/차트 분석가</h3><div class="vs j-sell">매도(관망)</div>
+      <p>이틀 연속 서킷브레이커·갭하락으로 단기 추세 완전 훼손. 20만원 지지선 시험 중이며 반등 확인 전까지 낙폭 확대 위험.</p>
+      <div class="cs">신뢰도 70%</div><div class="bars"><i style="width:70%"></i></div>
+    </div>
+    <div class="card acard"><h3>📰 뉴스·심리 분석가</h3><div class="vs j-neu">중립</div>
+      <p>AI 회의론+중국 쇼크+가이던스 실망이 겹친 패닉 국면. 투자심리 극도 위축, 외국인 이탈 진행형. 단 과매도 반등 여지도 존재.</p>
+      <div class="cs">신뢰도 55%</div><div class="bars"><i style="width:55%"></i></div>
+    </div>
+    <div class="card acard"><h3>🛡️ 리스크 관리 분석가</h3><div class="vs j-neu">중립(방어적)</div>
+      <p>서킷브레이커 반복·일 −8% 변동성은 포지션 축소를 요구. 지금은 신규 대량 진입보다 분할·현금비중 확보 국면.</p>
+      <div class="cs">신뢰도 75%</div><div class="bars"><i style="width:75%"></i></div>
+    </div>
+  </div>
+
+  <!-- STRATEGY -->
+  <div class="sect">종합 전략 (참고용)</div>
+  <div class="card">
+    <ul class="plan">
+      <li><span class="step">종합판정</span><div><b>중립 (분할 매수 관점)</b> · 공격적 신규 진입 자제 · 종합 신뢰도 58%</div></li>
+      <li><span class="step">진입</span><div>과매도 분할 매수 <b>190,000~205,000원</b>, 반등 확인 전 추격 자제</div></li>
+      <li><span class="step">목표</span><div>1차 <b>240,000원</b>, 중기 <b>300,000원</b> (컨센 40만원대는 하향 리스크 감안해 보수 적용)</div></li>
+      <li><span class="step">손절</span><div>종가 기준 <b>185,000원</b> 이탈 시 (약 −8%)</div></li>
+      <li><span class="step">감시지표</span><div>외국인 순매수 전환 · 서킷브레이커 중단 · HBM4 수주 · 중국(CXMT·DUV) 재료 · DRAM 고정가 · 2Q 확정공시 · 파운드리 적자 · 20만원 지지</div></li>
+    </ul>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sect">참고 자료</div>
+  <div class="card">
+    <ul class="src">
+      <li><a href="https://kr.tradingview.com/symbols/KRX-005930/">TradingView · 005930</a></li>
+      <li><a href="https://stockanalysis.com/quote/krx/005930/">stockanalysis.com · 005930</a></li>
+      <li><a href="https://www.tossinvest.com/stocks/A005930/order">토스증권 · 005930</a></li>
+      <li><a href="https://www.seoul.co.kr/news/economy/securities/2026/07/29/20260729500118">서울신문 · 7/29 급락</a></li>
+      <li><a href="https://biz.heraldcorp.com/article/10824360">헤럴드경제 · 서킷브레이커</a></li>
+      <li><a href="https://www.mt.co.kr/stock/2026/07/28/2026072810375040625">머니투데이 · 창신메모리 쇼크</a></li>
+      <li><a href="https://www.etnews.com/20260707000014">전자신문 · 2분기 실적</a></li>
+      <li><a href="https://news.samsung.com/kr/삼성전자-2026년-2분기-잠정실적-발표">삼성 뉴스룸 · 2Q 잠정실적</a></li>
+    </ul>
+  </div>
+
+  <div class="disc">⚠ <b>투자 유의</b> — 본 리포트는 공개 웹 자료를 AI 애널리스트가 정리한 <b>참고용 분석</b>이며 매수·매도를 권유하지 않습니다. 현재가·시총·실적·목표가 등은 검색 시점 기준 <b>지연·근사치</b>이고 일부 수치(2Q 영업이익, PER/PBR, 시가총액)는 소스 차단·이상치로 <b>불확실</b>합니다. 반드시 증권사 HTS/MTS 실시간 데이터와 확정 공시로 교차 확인하세요. 모든 투자 판단과 책임은 투자자 본인에게 있습니다. · 생성 2026-07-29.</div>
+</div>
+</body></html>
