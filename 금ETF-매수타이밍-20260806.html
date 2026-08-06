@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>현물 금ETF 매수 타이밍 분석 · 2026-08-06</title>
+<style>
+:root{--bg:#0f1216;--panel:#171b22;--panel2:#1d232c;--bd:#2a323d;--tx:#e6ebf2;--mut:#95a1b2;--up:#e0483b;--dn:#2f7fe0;--buy:#22c55e;--stop:#ef4444;--tgt:#f59e0b;--acc:#6ea8fe;--gold:#e0b13a;}
+@media (prefers-color-scheme:light){:root{--bg:#f4f6f9;--panel:#fff;--panel2:#f0f3f7;--bd:#dde3ea;--tx:#131720;--mut:#5a6673;--acc:#2563eb;}}
+:root[data-theme="dark"]{--bg:#0f1216;--panel:#171b22;--panel2:#1d232c;--bd:#2a323d;--tx:#e6ebf2;--mut:#95a1b2;--acc:#6ea8fe;}
+:root[data-theme="light"]{--bg:#f4f6f9;--panel:#fff;--panel2:#f0f3f7;--bd:#dde3ea;--tx:#131720;--mut:#5a6673;--acc:#2563eb;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Pretendard","Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:26px;margin:0 0 4px;letter-spacing:-.02em}
+.sub{color:var(--mut);font-size:14px;margin-bottom:8px}.sub b{color:var(--tx)}
+.flow{display:flex;gap:6px;flex-wrap:wrap;font-size:11px;color:var(--mut);margin:14px 0 22px;align-items:center}
+.flow span{background:var(--panel2);border:1px solid var(--bd);padding:3px 10px;border-radius:20px}
+.sect{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--mut);text-transform:uppercase;margin:30px 0 10px}
+.card{background:var(--panel);border:1px solid var(--bd);border-radius:14px;padding:18px 20px;margin-bottom:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+.verdict{background:linear-gradient(135deg,var(--panel),var(--panel2));border:1px solid var(--bd);border-radius:18px;padding:22px 24px;margin-bottom:18px}
+.vhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.badge{font-size:22px;font-weight:800;padding:8px 20px;border-radius:12px}
+.b-hold{background:rgba(245,158,11,.16);color:#f5a623;border:1.5px solid #f5a62366}
+.vtitle{font-size:15px;color:var(--mut)}.vtitle b{color:var(--tx);font-size:17px}
+.conf{margin-left:auto;text-align:right}.conf .n{font-size:30px;font-weight:800;line-height:1}.conf .l{font-size:11px;color:var(--mut)}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.pill{background:var(--panel2);border:1px solid var(--bd);border-radius:10px;padding:9px 14px;font-size:13px;flex:1;min-width:120px}
+.pill .k{color:var(--mut);font-size:11px;display:block}.pill .v{font-weight:700;font-size:16px}
+.v-buy{color:var(--buy)}.v-stop{color:var(--stop)}.v-tgt{color:var(--tgt)}
+.rgrade{display:inline-block;margin-top:14px;font-size:12px;background:rgba(245,158,11,.14);color:#f5b23a;border:1px solid #f59e0b55;padding:4px 12px;border-radius:20px;font-weight:700}
+.qprice{font-size:34px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.chg{font-size:14px;font-weight:700;margin-top:6px}.chg.down{color:var(--dn)}.chg.up{color:var(--up)}
+.zrow{display:grid;grid-template-columns:1fr;gap:6px;margin:6px 0}
+.ztrack{position:relative;height:30px;background:var(--panel2);border:1px solid var(--bd);border-radius:8px}
+.zband{position:absolute;top:0;bottom:0;left:0;right:0;background:linear-gradient(90deg,rgba(47,127,224,.15),rgba(224,177,58,.32));border-radius:6px}
+.zcur{position:absolute;top:-5px;bottom:-5px;width:3px;background:var(--tgt);border-radius:2px}
+.zvals{position:absolute;inset:0;display:flex;justify-content:space-between;padding:0 8px;font-size:10.5px;color:var(--tx);align-items:center;font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--bd)}
+th{color:var(--mut);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+.tag{font-size:11px;padding:2px 8px;border-radius:6px;font-weight:700}
+.t-bear{background:rgba(47,127,224,.16);color:#5b9bf0}.t-bull{background:rgba(224,177,58,.18);color:var(--gold)}.t-neu{background:rgba(149,161,178,.16);color:var(--mut)}
+.bbwrap{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.bbwrap{grid-template-columns:1fr}}
+.bull{border-top:3px solid var(--gold)}.bear{border-top:3px solid var(--dn)}
+.bbhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.bbhead h3{margin:0;font-size:16px}
+.bbwrap ul{margin:0;padding-left:18px;font-size:13px}.bbwrap li{margin-bottom:7px}
+.acard h3{margin:0 0 2px;font-size:15px}
+.acard .vs{font-size:12px;margin-bottom:8px;font-weight:700}
+.acard p{margin:0;font-size:13px;color:var(--tx)}
+.acard .cs{font-size:11px;color:var(--mut);margin-top:8px}
+.bars{height:6px;background:var(--panel2);border-radius:4px;overflow:hidden;margin-top:4px}
+.bars>i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),#a5c6ff)}
+.j-buy{color:var(--buy)}.j-sell{color:var(--stop)}.j-neu{color:var(--tgt)}
+.plan{list-style:none;padding:0;margin:0}
+.plan li{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--bd);font-size:13.5px;align-items:baseline}
+.plan .step{font-weight:800;color:var(--acc);min-width:78px}.plan b{font-variant-numeric:tabular-nums}
+ul.src{font-size:12px;columns:2;gap:24px;padding-left:18px;margin:0}
+@media(max-width:640px){ul.src{columns:1}}
+ul.src a{color:var(--acc);text-decoration:none}ul.src a:hover{text-decoration:underline}
+.disc{margin-top:30px;padding:14px 16px;background:var(--panel2);border:1px dashed var(--bd);border-radius:10px;font-size:12px;color:var(--mut)}
+p{font-size:14px}
+.prodtag{font-size:11px;padding:2px 8px;border-radius:6px;font-weight:700;background:rgba(110,168,254,.16);color:var(--acc)}
+</style>
+</head><body>
+<div class="wrap">
+  <h1>🥇 현물 금ETF 매수 타이밍 분석</h1>
+  <div class="sub">AI 증권사 다중 애널리스트 리포트 · 기준 <b>2026-08-06</b> · 국제 금(XAU/USD) · KRX금현물 · KRW</div>
+  <div class="flow"><span>가격·추세</span>›<span>거시(Fed·달러)</span>›<span>수급(중앙은행)</span>›<span>환율(원달러)</span>›<span>상품·비용</span>›<span>종합</span></div>
+
+  <!-- VERDICT -->
+  <div class="verdict">
+    <div class="vhead">
+      <span class="badge b-hold">중립 · 분할매수</span>
+      <div class="vtitle">국제 금 <b>≈ $4,030 / oz</b> · <span class="chg down" style="display:inline">고점 대비 약 −27% 조정 구간 ▼</span></div>
+      <div class="conf"><div class="n">60<span style="font-size:16px">%</span></div><div class="l">종합 신뢰도</div></div>
+    </div>
+    <div class="pills">
+      <div class="pill"><span class="k">권장 진입 방식</span><span class="v v-buy">일시금 지양 · 분할매수</span></div>
+      <div class="pill"><span class="k">추천 상품 유형</span><span class="v v-tgt">현물형(무헤지)</span></div>
+      <div class="pill"><span class="k">핵심 지지선(국제)</span><span class="v v-stop">$4,000 / oz</span></div>
+    </div>
+    <span class="rgrade">⚠ 판단 요약: 구조적 상승 논거는 유효하나 <b>고점 부근·Fed 매파·원화 강세 리스크</b>로 일괄 진입은 부적절 → 시간 분산 매수가 정석</span>
+  </div>
+
+  <!-- POSITION IN RANGE -->
+  <div class="sect">2026년 가격 밴드 내 현재 위치</div>
+  <div class="card">
+    <div class="zrow"><div class="ztrack"><div class="zband"></div>
+      <div class="zcur" style="left:26%"></div>
+      <div class="zvals"><span>연중 저점대 ≈$3,900</span><span>현재 ≈$4,030</span><span>연중 고점 ≈$5,500</span></div>
+    </div></div>
+    <p class="note" style="font-size:11.5px;color:var(--mut);margin:8px 0 0">2026년 1월 사상 최고 ~$5,500대에서 약 −27% 조정 후 $4,000선을 지지로 횡보. WGC 적정가치 추정 ~$4,100, 하반기 예상밴드 $3,895~$4,305. 수치는 검색 시점 근사치이며 실시간 변동.</p>
+  </div>
+
+  <!-- KEY METRICS -->
+  <div class="sect">핵심 지표 · 시장 환경</div>
+  <div class="card">
+    <table>
+      <tr><th>지표</th><th style="text-align:right">값</th><th style="text-align:right">금에 대한 방향</th></tr>
+      <tr><td>국제 금 현물</td><td class="num">≈ $4,030/oz</td><td style="text-align:right"><span class="tag t-neu">조정 후 지지</span></td></tr>
+      <tr><td>연중 고점 대비</td><td class="num">약 −27%</td><td style="text-align:right"><span class="tag t-bull">저가 매수 매력</span></td></tr>
+      <tr><td>Fed 금리 스탠스</td><td class="num">매파 · 인하 소멸</td><td style="text-align:right"><span class="tag t-bear">역풍</span></td></tr>
+      <tr><td>달러지수(DXY)</td><td class="num">≈ 101 (연말 ~98 전망)</td><td style="text-align:right"><span class="tag t-bull">중기 우호</span></td></tr>
+      <tr><td>중앙은행 순매수(Q2)</td><td class="num">289톤 (+62% YoY)</td><td style="text-align:right"><span class="tag t-bull">강력 지지</span></td></tr>
+      <tr><td>원/달러 환율</td><td class="num">≈ 1,425원 (연말 ~1,400 전망)</td><td style="text-align:right"><span class="tag t-bear">현물형 환차손 리스크</span></td></tr>
+      <tr><td>2026 연말 컨센 분포</td><td class="num">$3,288 ~ $6,000</td><td style="text-align:right"><span class="tag t-neu">전망 편차 큼</span></td></tr>
+    </table>
+    <p class="note" style="font-size:11.5px;color:var(--mut);margin-top:10px">⚠ 국내 <b>현물형 무헤지 ETF</b>(예: ACE KRX금현물)는 <b>금값 × 원달러</b>가 함께 반영됩니다. 지금처럼 환율이 고점(원화 약세)일 때 진입하면, 향후 원화 강세(환율 하락) 시 금값이 올라도 수익이 상쇄될 수 있습니다.</p>
+  </div>
+
+  <!-- BULL/BEAR -->
+  <div class="sect">지금 사도 되는가 · 강세 vs 약세</div>
+  <div class="bbwrap">
+    <div class="card bull"><div class="bbhead"><h3>🐂 매수 논거</h3><span class="note" style="font-size:12px;color:var(--mut)">구조적 수요</span></div>
+      <ul>
+        <li>중앙은행이 <b>하락 국면에서 오히려 매수 가속</b>(Q2 289톤, PBOC 6월 최대) — 강력한 가격 하방 지지</li>
+        <li>사상 최고 대비 −27% 조정으로 고점 추격 대비 <b>진입 단가 개선</b></li>
+        <li>연말 달러 약세(DXY ~98) 전망 시 금 우호적 환경 복귀</li>
+        <li>지정학 리스크·중앙은행 탈달러화가 중장기 안전자산 수요 지지</li>
+        <li>장기(6년) 관점 누적 +160%대 — 조정 흡수 후에도 견조한 추세</li>
+      </ul>
+    </div>
+    <div class="card bear"><div class="bbhead"><h3>🐻 신중 논거</h3><span class="note" style="font-size:12px;color:var(--mut)">거시 역풍</span></div>
+      <ul>
+        <li>Fed 매파 전환 — <b>2026 금리인하 소멸, 인상 가능성</b>까지 부상(실질금리 상승 = 금 기회비용 ↑)</li>
+        <li>현재가는 여전히 역사적 고점대 — <b>절대 저평가 구간 아님</b></li>
+        <li>원/달러 ~1,425원 고환율 → 현물형 진입 시 <b>환율 정상화 시 환차손</b> 리스크</li>
+        <li>연말 컨센 하단 $3,288 등 약세 시나리오 존재(전망 편차 극심)</li>
+        <li>단기 급반등보다 $4,000선 중심 <b>변동성 큰 횡보</b> 가능성</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ANALYST PANEL -->
+  <div class="sect">애널리스트 관점별 의견</div>
+  <div class="grid2">
+    <div class="card acard"><h3>🌐 거시 전략가</h3><div class="vs j-neu">중립</div>
+      <p>Fed 매파(인하 소멸·인상론)는 단기 금 역풍이나, 연말 달러 약세 전환 전망은 상쇄 요인. 방향보다 <b>진입 타이밍 분산</b>이 유효한 국면.</p>
+      <div class="cs">신뢰도 60%</div><div class="bars"><i style="width:60%"></i></div>
+    </div>
+    <div class="card acard"><h3>🏦 수급·중앙은행 분석가</h3><div class="vs j-buy">매수(구조적)</div>
+      <p>하락에도 중앙은행 순매수 가속(Q2 +62% YoY)은 이례적 강세 신호. 구조적 바닥 수요가 두터워 <b>중장기 하방은 제한적</b>이라 판단.</p>
+      <div class="cs">신뢰도 68%</div><div class="bars"><i style="width:68%"></i></div>
+    </div>
+    <div class="card acard"><h3>💱 환율 분석가</h3><div class="vs j-neu">중립(주의)</div>
+      <p>원/달러 ~1,425원 고환율 구간. 현물형 무헤지 ETF는 금값 상승분이 원화 강세로 상쇄될 수 있어 <b>환헤지형 병행·분할</b> 권고.</p>
+      <div class="cs">신뢰도 62%</div><div class="bars"><i style="width:62%"></i></div>
+    </div>
+    <div class="card acard"><h3>🛡️ 리스크 관리 분석가</h3><div class="vs j-neu">중립(방어적)</div>
+      <p>고점대 + 거시 역풍 + 전망 편차 극심. 일시금 투입은 부적절, <b>3~6개월 적립식 분할</b>로 평균단가·환율 리스크를 동시 관리할 국면.</p>
+      <div class="cs">신뢰도 70%</div><div class="bars"><i style="width:70%"></i></div>
+    </div>
+  </div>
+
+  <!-- PRODUCT COMPARISON -->
+  <div class="sect">국내 금ETF 상품 비교 (참고)</div>
+  <div class="card">
+    <table>
+      <tr><th>구분</th><th>대표 상품</th><th>특징</th><th style="text-align:right">적합</th></tr>
+      <tr><td><span class="prodtag">현물</span></td><td>ACE KRX금현물(411060)</td><td>실물 금가격 정확 추종, 롤오버 비용 없음, 무헤지(환율 노출)</td><td style="text-align:right"><span class="tag t-bull">장기</span></td></tr>
+      <tr><td><span class="prodtag">선물(H)</span></td><td>KODEX·TIGER 골드선물(H)</td><td>환헤지로 환율 영향 차단, 단 롤오버·헤지 비용 발생</td><td style="text-align:right"><span class="tag t-neu">환율 회피</span></td></tr>
+    </table>
+    <p class="note" style="font-size:11.5px;color:var(--mut);margin-top:10px">현물 ETF 출시(2021.12) 이후 누적 성과: ACE KRX금현물 약 +100%(연 22%) &gt; 골드선물(H) 약 +59%(연 14%). 장기·현물 노출을 원하면 <b>현물형</b>, 지금의 고환율 부담을 피하고 싶으면 <b>선물 환헤지형</b>이 선택지. 세금·보수 구조는 상품별로 상이하니 확인 필요.</p>
+  </div>
+
+  <!-- STRATEGY -->
+  <div class="sect">종합 전략 (참고용)</div>
+  <div class="card">
+    <ul class="plan">
+      <li><span class="step">종합판정</span><div><b>중립 · 분할매수</b> · "지금 전액 매수"보다 "지금부터 나눠서 담기" · 종합 신뢰도 60%</div></li>
+      <li><span class="step">진입</span><div>일시금 지양, <b>3~6개월 적립식 분할</b>. $4,000선 이탈 시 추가 분할 여력 확보</div></li>
+      <li><span class="step">상품</span><div>장기·현물 노출 → <b>현물형(ACE KRX금현물)</b> / 고환율 부담 회피 → <b>선물 환헤지형 병행</b></div></li>
+      <li><span class="step">비중</span><div>포트폴리오 내 금은 <b>안전자산·분산</b> 목적. 통상 <b>5~15%</b> 내에서 운용 권고(집중 투자 지양)</div></li>
+      <li><span class="step">감시지표</span><div>Fed 인상 여부·점도표 · 실질금리 · DXY · 원/달러 · 중앙은행 분기 매수량 · 국제 금 $4,000 지지 유지</div></li>
+    </ul>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sect">참고 자료</div>
+  <div class="card">
+    <ul class="src">
+      <li><a href="https://www.jpmorgan.com/insights/global-research/commodities/gold-prices">J.P. Morgan · 2026 금 전망</a></li>
+      <li><a href="https://goldsilver.com/industry-news/goldsilver-news/central-bank-gold-buying-record-q2-2026/">중앙은행 Q2 289톤 순매수</a></li>
+      <li><a href="https://www.fxleaders.com/news/2026/07/13/gold-price-forecast-can-central-bank-buying-offset-fed-pressure-below-4075/">FX Leaders · Fed압력 vs 중앙은행</a></li>
+      <li><a href="https://bingx.com/en/blog/article/july-2026-fomc-fed-rate-decision-and-how-it-affects-stocks-gold-bitcoin-price">2026.7 FOMC 매파 해석</a></li>
+      <li><a href="https://www.dailyforex.com/forex-technical-analysis/2026/07/gold-monthly-forecast-august-2026/248170">DailyForex · 8월 금 월간전망</a></li>
+      <li><a href="https://www.canadianminingreport.com/blog/experts-say-gold-s-pullback-is-bullish-should-investors-buy-the-dip">금 조정=매수 기회? 논쟁</a></li>
+      <li><a href="https://www.aceetf.co.kr/fund/K55101DN7441">ACE KRX금현물(411060)</a></li>
+      <li><a href="https://kbthink.com/investment/issues/2026-krw-usd-outlook.html">KB · 2026 원달러 전망</a></li>
+    </ul>
+  </div>
+
+  <div class="disc">⚠ <b>투자 유의</b> — 본 리포트는 공개 웹 자료를 AI 애널리스트가 정리한 <b>참고용 분석</b>이며 특정 상품의 매수·매도를 권유하지 않습니다. 국제 금값·환율·중앙은행 통계·목표가 등은 검색 시점 기준 <b>지연·근사치</b>이며 실시간 변동합니다. 금은 배당이 없고 변동성이 큰 자산으로 원금 손실이 가능하며, 현물형 무헤지 ETF는 환율 변동에 직접 노출됩니다. 반드시 증권사 실시간 데이터·상품 투자설명서(보수·세금·과세이연 여부)로 교차 확인하세요. 모든 투자 판단과 책임은 투자자 본인에게 있습니다. · 생성 2026-08-06.</div>
+</div>
+</body></html>
